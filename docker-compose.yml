@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  medremind-bigdata:
+    build:
+      context: ./backend/bigdata
+      dockerfile: Dockerfile
+    container_name: medremind-bigdata
+    hostname: localhost
+    ports:
+      - "9870:9870"   # HDFS NameNode Web UI
+      - "9000:9000"   # HDFS RPC
+      - "10000:10000" # HiveServer2 JDBC / Thrift
+      - "10002:10002" # HiveServer2 Web UI
+    volumes:
+      - ./backend/dataset.csv:/app/dataset.csv:ro
+      - ./backend/bigdata/mapper.py:/app/mapper.py:ro
+      - ./backend/bigdata/reducer.py:/app/reducer.py:ro
+      - hadoop_data:/opt/hadoop/data
+      - hive_data:/opt/hive/data
+    restart: unless-stopped
+
+volumes:
+  hadoop_data:
+  hive_data:

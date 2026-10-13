@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+springboot-backend/target/
+
+# Environment and sensitive credential files
+.env
+.env.*
+!.env.example
+token*.txt
+backend/token.txt
+backend/tokenB.txt
+*.pem
+*.key
+
+# Runtime SQLite databases and user data
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+backend/medicines.db
+
+# IDE and OS files
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+.DS_Store
+
+# Scratch and editor backups
+*.bak
+*.bak2
+backup_pre_docker_hadoop/
+user_input*.json
+req10.txt
